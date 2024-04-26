@@ -1,6 +1,6 @@
 # TeamBuilder
 
-We moved here: https://github.com/TeamBuilderApp/TeamBuilder
+Welcome to our new repo!
 
 Welcome to Team Builder! 
 
@@ -15,4 +15,6 @@ About me:
 I have been simply an inventor minded person since childhood. I also love software engineering and using the latest technology. I also love to make something that is highly needed, that currently is a challenge (or save man hours through automation), designed and built into a smooth automated process to produce success for those around the World, and even for my own success. All ideas are encouraged!
 
 Best Regards,
+
+Old repo: https://github.com/TeamBuilderAPI/TeamBuilder
 
