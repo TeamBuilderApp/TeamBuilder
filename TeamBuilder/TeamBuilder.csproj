@@ -40,7 +40,4 @@
   <ItemGroup>
     <Folder Include="Dal\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Util\" />
-  </ItemGroup>
 </Project>
