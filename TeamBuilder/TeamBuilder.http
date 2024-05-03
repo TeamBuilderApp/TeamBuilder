@@ -1,6 +1,6 @@
 @TeamBuilder_HostAddress = http://localhost:5277
 
-GET {{TeamBuilder_HostAddress}}/TodoItems/
+GET {{TeamBuilder_HostAddress}}/TeamBuilder/
 Accept: application/json
 
 ###
