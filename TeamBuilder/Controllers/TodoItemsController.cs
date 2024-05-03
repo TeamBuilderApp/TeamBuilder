@@ -4,18 +4,41 @@ using TeamBuilder.Models;
 
 namespace TeamBuilder.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class TodoItemsController : ControllerBase
     {
         private readonly TodoContext _context;
 
-        public TodoItemsController(TodoContext context)
+        private readonly ILogger<TodoItemsController> _logger;
+
+        //Example: Converts a value by ID match, when creating a new object.
+        /*private static readonly string[] SetNameIdMapping = new[]
+        {
+            "a", "b", "c", "d"
+        };*/
+
+        //Example of how to use logging.
+        //public TodoItemsController(ILogger<TodoItemsController> logger)
+        public TodoItemsController(TodoContext context, ILogger<TodoItemsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        // GET: api/TodoItems
+        // <snippet_Get>
+        //The most basic HTTP Get example.
+        /*
+        [HttpGet(Name = "GetTodoItems")]
+        public IEnumerable<TodoItemDTO> Get()
+        {
+            return _context.TodoItems
+                .Select(x => TodoItem.ItemToDTO(x))
+                .ToList(); 
+        }*/
+
+        //GETTER
+        // GET: TodoItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
         {
@@ -24,8 +47,10 @@ namespace TeamBuilder.Controllers
                 .ToListAsync();
         }
 
-        // GET: api/TodoItems/5
-        // <snippet_GetByID>
+        //GETTER
+        //GET: TodoItems/id
+        //Example: TodoItems/5
+        //Getter by id.
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {
@@ -38,11 +63,14 @@ namespace TeamBuilder.Controllers
 
             return TodoItem.ItemToDTO(todoItem);
         }
-        // </snippet_GetByID>
+        // </snippet_Get>
 
-        // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         // <snippet_Update>
+        //SETTER
+        //The PUT method is used to update a single resource.
+        // PUT: TodoItems/id
+        // Example: TodoItems/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItemDTO todoDTO)
         {
@@ -73,9 +101,12 @@ namespace TeamBuilder.Controllers
         }
         // </snippet_Update>
 
-        // POST: api/TodoItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         // <snippet_Create>
+        // CREATE
+        // The POST method is used to create a new resource.
+        // POST: TodoItems
+        // Example: TodoItems
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<TodoItemDTO>> PostTodoItem(TodoItemDTO todoDTO)
         {
@@ -95,7 +126,13 @@ namespace TeamBuilder.Controllers
         }
         // </snippet_Create>
 
-        // DELETE: api/TodoItems/5
+
+        // <snippet_Delete>
+        // DELETE
+        // The DELETE method is used to delete an existing resource.
+        // DELETE: TodoItems/id
+        // Example: TodoItems/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoItem(long id)
         {
@@ -110,6 +147,7 @@ namespace TeamBuilder.Controllers
 
             return NoContent();
         }
+        // </snippet_Delete>
 
         private bool TodoItemExists(long id)
         {
