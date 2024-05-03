@@ -8,7 +8,7 @@ namespace TeamBuilder.Controllers
     [Route("[controller]")]
     public class TeamBuilderController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly TeamBuilderContext _context;
 
         private readonly ILogger<TeamBuilderController> _logger;
 
@@ -20,7 +20,7 @@ namespace TeamBuilder.Controllers
 
         //Example of how to use logging.
         //public TeamBuilderController(ILogger<TeamBuilderController> logger)
-        public TeamBuilderController(TodoContext context, ILogger<TeamBuilderController> logger)
+        public TeamBuilderController(TeamBuilderContext context, ILogger<TeamBuilderController> logger)
         {
             _context = context;
             _logger = logger;
@@ -30,20 +30,21 @@ namespace TeamBuilder.Controllers
         //The most basic HTTP Get example.
         /*
         [HttpGet(Name = "GetTeamBuilder")]
-        public IEnumerable<TodoItemDTO> Get()
+        public IEnumerable<TeamBuilderEventDto> Get()
         {
             return _context.TeamBuilder
-                .Select(x => TodoItem.ItemToDTO(x))
+                .Select(x => TeamBuilderEvent.TeamBuilderEventToDto(x))
                 .ToList(); 
         }*/
 
         //GETTER
         // GET: TeamBuilder
+        //HTTP GET(s) all Team Builder Event(s).
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTeamBuilder()
+        public async Task<ActionResult<IEnumerable<TeamBuilderEventDto>>> GetTeamBuilder()
         {
             return await _context.TeamBuilder
-                .Select(x => TodoItem.ItemToDTO(x))
+                .Select(x => TeamBuilderEvent.TeamBuilderEventToDto(x))
                 .ToListAsync();
         }
 
@@ -51,50 +52,52 @@ namespace TeamBuilder.Controllers
         //GET: TeamBuilder/id
         //Example: TeamBuilder/5
         //Getter by id.
+        // Exact match. HTTP GETs a Team Builder Event via lookup by its ID.
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
+        public async Task<ActionResult<TeamBuilderEventDto>> GetTeamBuilderEvent(long id)
         {
             var todoItem = await _context.TeamBuilder.FindAsync(id);
 
             if (todoItem == null)
             {
-                return NotFound();
+                return NotFound(); //404
             }
 
-            return TodoItem.ItemToDTO(todoItem);
+            return TeamBuilderEvent.TeamBuilderEventToDto(todoItem);
         }
         // </snippet_Get>
 
         // <snippet_Update>
         //SETTER
         //The PUT method is used to update a single resource by its ID.
+        // Exact match. Updates a Team Builder Event via lookup by its ID.
         // PUT: TeamBuilder/id
         // Example: TeamBuilder/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(long id, TodoItemDTO todoDTO)
+        public async Task<IActionResult> PutTeamBuilderEvent(long id, TeamBuilderEventDto TeamBuilderEventDto)
         {
-            if (id != todoDTO.Id)
+            if (id != TeamBuilderEventDto.Id)
             {
-                return BadRequest();
+                return BadRequest(); //400
             }
 
             var todoItem = await _context.TeamBuilder.FindAsync(id);
             if (todoItem == null)
             {
-                return NotFound();
+                return NotFound(); //404
             }
 
-            todoItem.Name = todoDTO.Name;
-            todoItem.IsComplete = todoDTO.IsComplete;
+            todoItem.Name = TeamBuilderEventDto.Name;
+            todoItem.IsComplete = TeamBuilderEventDto.IsComplete;
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!TodoItemExists(id))
+            catch (DbUpdateConcurrencyException) when (!TeamBuilderEventExists(id))
             {
-                return NotFound();
+                return NotFound(); //404
             }
 
             return NoContent();
@@ -108,21 +111,21 @@ namespace TeamBuilder.Controllers
         // Example: TeamBuilder
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TodoItemDTO>> PostTodoItem(TodoItemDTO todoDTO)
+        public async Task<ActionResult<TeamBuilderEventDto>> PostTeamBuilderEvent(TeamBuilderEventDto TeamBuilderEventDto)
         {
-            var todoItem = new TodoItem
+            var teamBuilderEvent = new TeamBuilderEvent
             {
-                IsComplete = todoDTO.IsComplete,
-                Name = todoDTO.Name
+                IsComplete = TeamBuilderEventDto.IsComplete,
+                Name = TeamBuilderEventDto.Name
             };
 
-            _context.TeamBuilder.Add(todoItem);
+            _context.TeamBuilder.Add(teamBuilderEvent);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(
-                nameof(GetTodoItem),
-                new { id = todoItem.Id },
-                TodoItem.ItemToDTO(todoItem));
+                nameof(GetTeamBuilderEvent),
+                new { id = teamBuilderEvent.Id },
+                TeamBuilderEvent.TeamBuilderEventToDto(teamBuilderEvent));
         }
         // </snippet_Create>
 
@@ -130,26 +133,28 @@ namespace TeamBuilder.Controllers
         // <snippet_Delete>
         // DELETE
         // The DELETE method is used to delete an existing resource by its ID.
+        // Exact match. Deletes a Team Builder Event via lookup by its ID.
         // DELETE: TeamBuilder/id
         // Example: TeamBuilder/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoItem(long id)
+        public async Task<IActionResult> DeleteTeamBuilderEvent(long id)
         {
-            var todoItem = await _context.TeamBuilder.FindAsync(id);
-            if (todoItem == null)
+            var teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            if (teamBuilderEvent == null)
             {
-                return NotFound();
+                return NotFound(); //404
             }
 
-            _context.TeamBuilder.Remove(todoItem);
+            _context.TeamBuilder.Remove(teamBuilderEvent);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
         // </snippet_Delete>
 
-        private bool TodoItemExists(long id)
+        // Exact match. Finds a Team Builder Event via lookup by its ID.
+        private bool TeamBuilderEventExists(long id)
         {
             return _context.TeamBuilder.Any(e => e.Id == id);
         }
