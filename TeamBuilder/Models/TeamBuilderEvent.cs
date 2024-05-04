@@ -1,4 +1,6 @@
-﻿namespace TeamBuilder.Models
+﻿using TeamBuilder.Util;
+
+namespace TeamBuilder.Models
 {
     /* 
     Added a Data Transfer Object (DTO)!     
@@ -18,23 +20,30 @@
     public class TeamBuilderEventDto
     {
         public long Id { get; set; }
-        public string? Name { get; set; }
-        public DateTime Date { get; set; }
-        public bool IsComplete { get; set; }
+        public string EventName { get; set; } = "";
+        public DateTime? EventDateTime { get; set; }
+        public bool IsEventOpen { get; set; }
+
+        public bool IsEventRecurring { get; set; }
 
     }
 
     public class TeamBuilderEvent : TeamBuilderEventDto
     {
-        public string? Secret { get; set; }
+        private string? Secret { get; set; }
 
-        public static TeamBuilderEventDto TeamBuilderEventToDto(TeamBuilderEvent todoItem) =>
-            new TeamBuilderEventDto
-            {
-            Id = todoItem.Id,
-            Name = todoItem.Name,
-            Date = todoItem.Date,
-            IsComplete = todoItem.IsComplete
-            };
+        public TeamBuilderEvent(TeamBuilderEventDto TeamBuilderEventDto) 
+        {
+            Util.Util.CopyProperties(TeamBuilderEventDto, this);
+        }
+
+        public static TeamBuilderEventDto TeamBuilderEventToDto(TeamBuilderEvent teamBuilderEvent)
+        {
+            TeamBuilderEventDto teamBuilderEventDto = new TeamBuilderEventDto();
+            
+            //Secret property has to be ignored here for the purpose of this DTO to work.
+            Util.Util.CopyProperties(teamBuilderEvent, teamBuilderEventDto, ["Secret"]); 
+            return teamBuilderEventDto;
+        }
     }
 }

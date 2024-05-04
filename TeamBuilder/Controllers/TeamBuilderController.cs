@@ -56,14 +56,14 @@ namespace TeamBuilder.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TeamBuilderEventDto>> GetTeamBuilderEvent(long id)
         {
-            var todoItem = await _context.TeamBuilder.FindAsync(id);
+            var teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
 
-            if (todoItem == null)
+            if (teamBuilderEvent == null)
             {
                 return NotFound(); //404
             }
 
-            return TeamBuilderEvent.TeamBuilderEventToDto(todoItem);
+            return TeamBuilderEvent.TeamBuilderEventToDto(teamBuilderEvent);
         }
         // </snippet_Get>
 
@@ -82,14 +82,13 @@ namespace TeamBuilder.Controllers
                 return BadRequest(); //400
             }
 
-            var todoItem = await _context.TeamBuilder.FindAsync(id);
-            if (todoItem == null)
+            var teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            if (teamBuilderEvent == null)
             {
                 return NotFound(); //404
             }
 
-            todoItem.Name = TeamBuilderEventDto.Name;
-            todoItem.IsComplete = TeamBuilderEventDto.IsComplete;
+            Util.Util.CopyProperties(TeamBuilderEventDto, teamBuilderEvent);
 
             try
             {
@@ -113,11 +112,8 @@ namespace TeamBuilder.Controllers
         [HttpPost]
         public async Task<ActionResult<TeamBuilderEventDto>> PostTeamBuilderEvent(TeamBuilderEventDto TeamBuilderEventDto)
         {
-            var teamBuilderEvent = new TeamBuilderEvent
-            {
-                IsComplete = TeamBuilderEventDto.IsComplete,
-                Name = TeamBuilderEventDto.Name
-            };
+            var teamBuilderEvent = new TeamBuilderEvent(TeamBuilderEventDto);
+
 
             _context.TeamBuilder.Add(teamBuilderEvent);
             await _context.SaveChangesAsync();
