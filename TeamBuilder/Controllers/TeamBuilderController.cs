@@ -56,7 +56,7 @@ namespace TeamBuilder.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TeamBuilderEventDto>> GetTeamBuilderEvent(long id)
         {
-            var teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            TeamBuilderEvent? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
 
             if (teamBuilderEvent == null)
             {
@@ -82,17 +82,17 @@ namespace TeamBuilder.Controllers
                 return BadRequest(); //400
             }
 
-            var teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            TeamBuilderEvent? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
             if (teamBuilderEvent == null)
             {
                 return NotFound(); //404
             }
 
-            Util.Util.CopyProperties(TeamBuilderEventDto, teamBuilderEvent);
+            _ = Util.Util.CopyProperties(TeamBuilderEventDto, teamBuilderEvent);
 
             try
             {
-                await _context.SaveChangesAsync();
+                _ = await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException) when (!TeamBuilderEventExists(id))
             {
@@ -112,11 +112,18 @@ namespace TeamBuilder.Controllers
         [HttpPost]
         public async Task<ActionResult<TeamBuilderEventDto>> PostTeamBuilderEvent(TeamBuilderEventDto TeamBuilderEventDto)
         {
-            var teamBuilderEvent = new TeamBuilderEvent(TeamBuilderEventDto);
+            TeamBuilderEvent teamBuilderEvent = new(TeamBuilderEventDto);
 
 
-            _context.TeamBuilder.Add(teamBuilderEvent);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _ = _context.TeamBuilder.Add(teamBuilderEvent);
+                _ = await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return NotFound(); //404
+            }
 
             return CreatedAtAction(
                 nameof(GetTeamBuilderEvent),
@@ -136,14 +143,21 @@ namespace TeamBuilder.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeamBuilderEvent(long id)
         {
-            var teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            TeamBuilderEvent? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
             if (teamBuilderEvent == null)
             {
                 return NotFound(); //404
             }
-
-            _context.TeamBuilder.Remove(teamBuilderEvent);
-            await _context.SaveChangesAsync();
+            
+            try
+            {
+                _ = _context.TeamBuilder.Remove(teamBuilderEvent);
+                _ = await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!TeamBuilderEventExists(id))
+            {
+                return NotFound(); //404
+            }
 
             return NoContent();
         }

@@ -1,6 +1,4 @@
-﻿using TeamBuilder.Util;
-
-namespace TeamBuilder.Models
+﻿namespace TeamBuilder.Models
 {
     /* 
     Added a Data Transfer Object (DTO)!     
@@ -32,17 +30,17 @@ namespace TeamBuilder.Models
     {
         private string? Secret { get; set; }
 
-        public TeamBuilderEvent(TeamBuilderEventDto TeamBuilderEventDto) 
+        public TeamBuilderEvent(TeamBuilderEventDto TeamBuilderEventDto)
         {
-            Util.Util.CopyProperties(TeamBuilderEventDto, this);
+            _ = Util.Util.CopyProperties(TeamBuilderEventDto, this);
         }
 
         public static TeamBuilderEventDto TeamBuilderEventToDto(TeamBuilderEvent teamBuilderEvent)
         {
-            TeamBuilderEventDto teamBuilderEventDto = new TeamBuilderEventDto();
-            
+            TeamBuilderEventDto teamBuilderEventDto = new();
+
             //Secret property has to be ignored here for the purpose of this DTO to work.
-            Util.Util.CopyProperties(teamBuilderEvent, teamBuilderEventDto, ["Secret"]); 
+            _ = Util.Util.CopyProperties(teamBuilderEvent, teamBuilderEventDto, ["Secret"]);
             return teamBuilderEventDto;
         }
     }
