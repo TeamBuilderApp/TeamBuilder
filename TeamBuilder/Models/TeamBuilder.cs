@@ -37,7 +37,7 @@
         public TeamBuilder(TeamBuilderEventDto teamBuilderEventDto)
         {
             //TeamBuilder.ObjectToDto(teamBuilderEventDto);
-            Util.Util.CopyProperties(teamBuilderEventDto, this, ["Secret"]);
+            _ = Util.Util.CopyProperties(teamBuilderEventDto, this, ["Secret"]);
         }
 
         public static TeamBuilderEventDto ObjectToDto(object obj)
@@ -45,7 +45,7 @@
             TeamBuilderEventDto objDto = new();
 
             //Secret property has to be ignored here for the purpose of this DTO to work.
-            Util.Util.CopyProperties(obj, objDto, ["Secret"]);
+            _ = Util.Util.CopyProperties(obj, objDto, ["Secret"]);
             return objDto;
         }
 

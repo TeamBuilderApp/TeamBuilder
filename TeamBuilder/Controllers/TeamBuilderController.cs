@@ -145,7 +145,7 @@ namespace TeamBuilder.Controllers
             {
                 return NotFound(); //404
             }
-            
+
             try
             {
                 _ = _context.TeamBuilder.Remove(teamBuilderEvent);
