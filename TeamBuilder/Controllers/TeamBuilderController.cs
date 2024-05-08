@@ -33,7 +33,7 @@ namespace TeamBuilder.Controllers
         public IEnumerable<TeamBuilderEventDto> Get()
         {
             return _context.TeamBuilder
-                .Select(x => TeamBuilderEvent.TeamBuilderEventToDto(x))
+                .Select(x => TeamBuilder.TeamBuilderEventToDto(x))
                 .ToList(); 
         }*/
 
@@ -44,7 +44,7 @@ namespace TeamBuilder.Controllers
         public async Task<ActionResult<IEnumerable<TeamBuilderEventDto>>> GetTeamBuilder()
         {
             return await _context.TeamBuilder
-                .Select(x => TeamBuilderEvent.TeamBuilderEventToDto(x))
+                .Select(x => TeamBuilder.Models.TeamBuilder.ObjectToDto(x))
                 .ToListAsync();
         }
 
@@ -56,14 +56,14 @@ namespace TeamBuilder.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TeamBuilderEventDto>> GetTeamBuilderEvent(long id)
         {
-            TeamBuilderEvent? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            TeamBuilder.Models.TeamBuilder? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
 
             if (teamBuilderEvent == null)
             {
                 return NotFound(); //404
             }
 
-            return TeamBuilderEvent.TeamBuilderEventToDto(teamBuilderEvent);
+            return TeamBuilder.Models.TeamBuilder.ObjectToDto(teamBuilderEvent);
         }
         // </snippet_Get>
 
@@ -82,13 +82,11 @@ namespace TeamBuilder.Controllers
                 return BadRequest(); //400
             }
 
-            TeamBuilderEvent? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            TeamBuilder.Models.TeamBuilder? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
             if (teamBuilderEvent == null)
             {
                 return NotFound(); //404
             }
-
-            _ = Util.Util.CopyProperties(TeamBuilderEventDto, teamBuilderEvent);
 
             try
             {
@@ -110,10 +108,9 @@ namespace TeamBuilder.Controllers
         // Example: TeamBuilder
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TeamBuilderEventDto>> PostTeamBuilderEvent(TeamBuilderEventDto TeamBuilderEventDto)
+        public async Task<ActionResult<TeamBuilderEventDto>> PostTeamBuilderEvent(TeamBuilderEventDto teamBuilderEventDto)
         {
-            TeamBuilderEvent teamBuilderEvent = new(TeamBuilderEventDto);
-
+            Models.TeamBuilder teamBuilderEvent = new(teamBuilderEventDto);
 
             try
             {
@@ -128,7 +125,7 @@ namespace TeamBuilder.Controllers
             return CreatedAtAction(
                 nameof(GetTeamBuilderEvent),
                 new { id = teamBuilderEvent.Id },
-                TeamBuilderEvent.TeamBuilderEventToDto(teamBuilderEvent));
+                teamBuilderEventDto);
         }
         // </snippet_Create>
 
@@ -143,7 +140,7 @@ namespace TeamBuilder.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeamBuilderEvent(long id)
         {
-            TeamBuilderEvent? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            TeamBuilder.Models.TeamBuilder? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
             if (teamBuilderEvent == null)
             {
                 return NotFound(); //404

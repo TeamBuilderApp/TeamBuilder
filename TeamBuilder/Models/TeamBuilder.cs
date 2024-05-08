@@ -13,35 +13,41 @@
     /*
         Will map to Entity SQL eventually using DBContext and POCO, for now let's get it working!
         A DbSet represents the collection of all entities in the context, or that can be queried from the database, of a given type. 
-        DbSet objects are created from a DbContext using the DbContext.
+        DbSet objects are created from a DbContext.
      */
     public class TeamBuilderEventDto
     {
         public long Id { get; set; }
         public string EventName { get; set; } = "";
+        public string EventDescription { get; set; } = "";
         public DateTime? EventDateTime { get; set; }
         public bool IsEventOpen { get; set; }
-
         public bool IsEventRecurring { get; set; }
 
     }
 
-    public class TeamBuilderEvent : TeamBuilderEventDto
+    public class TeamBuilder : TeamBuilderEventDto
     {
         private string? Secret { get; set; }
 
-        public TeamBuilderEvent(TeamBuilderEventDto TeamBuilderEventDto)
+        public TeamBuilder()
         {
-            _ = Util.Util.CopyProperties(TeamBuilderEventDto, this);
         }
 
-        public static TeamBuilderEventDto TeamBuilderEventToDto(TeamBuilderEvent teamBuilderEvent)
+        public TeamBuilder(TeamBuilderEventDto teamBuilderEventDto)
         {
-            TeamBuilderEventDto teamBuilderEventDto = new();
+            //TeamBuilder.ObjectToDto(teamBuilderEventDto);
+            Util.Util.CopyProperties(teamBuilderEventDto, this, ["Secret"]);
+        }
+
+        public static TeamBuilderEventDto ObjectToDto(object obj)
+        {
+            TeamBuilderEventDto objDto = new();
 
             //Secret property has to be ignored here for the purpose of this DTO to work.
-            _ = Util.Util.CopyProperties(teamBuilderEvent, teamBuilderEventDto, ["Secret"]);
-            return teamBuilderEventDto;
+            Util.Util.CopyProperties(obj, objDto, ["Secret"]);
+            return objDto;
         }
+
     }
 }

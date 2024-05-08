@@ -9,6 +9,6 @@ namespace TeamBuilder.Models
         {
         }
 
-        public DbSet<TeamBuilderEvent> TeamBuilder { get; set; } = null!;
+        public DbSet<TeamBuilder> TeamBuilder { get; set; } = null!;
     }
 }

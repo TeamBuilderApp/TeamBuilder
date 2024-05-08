@@ -3,8 +3,11 @@
 
     public abstract class TeamBuilderAPI
     {
+        /*
+        //Example properties.
         public abstract string Name { get; }
         public abstract string Description { get; }
+        */
 
     }
     public static class DAL
