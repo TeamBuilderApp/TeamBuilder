@@ -1,10 +1,20 @@
 ﻿namespace TeamBuilder.Dal
 {
-    public static class DataAccessLayer
+
+    public abstract class TeamBuilderAPI
     {
-        static DataAccessLayer()
+        /*
+        //Example properties.
+        public abstract string Name { get; }
+        public abstract string Description { get; }
+        */
+
+    }
+    public static class DAL
+    {
+        static DAL()
         {
-            //If there's a need for a Dal!
+            //If there's a need for a Data Access Layer!
         }
     }
 }
