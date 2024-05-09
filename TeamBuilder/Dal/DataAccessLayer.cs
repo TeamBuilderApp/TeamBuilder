@@ -14,7 +14,7 @@
     {
         static DAL()
         {
-            //If there's a need for a Dal!
+            //If there's a need for a Data Access Layer!
         }
     }
 }

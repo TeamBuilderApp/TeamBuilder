@@ -7,7 +7,7 @@ namespace TeamBuilder.Util
     {
         static Util()
         {
-            //If there's ever a need for a Utility file!
+            //A common Utility file for Team Builder!
         }
 
         /// <summary>
