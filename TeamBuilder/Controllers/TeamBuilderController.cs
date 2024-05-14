@@ -75,18 +75,20 @@ namespace TeamBuilder.Controllers
         // Example: TeamBuilder/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTeamBuilderEvent(long id, TeamBuilderEventDto TeamBuilderEventDto)
+        public async Task<IActionResult> PutTeamBuilderEvent(long id, TeamBuilderEventDto teamBuilderEventDto)
         {
-            if (id != TeamBuilderEventDto.Id)
+            if (id != teamBuilderEventDto.Id)
             {
                 return BadRequest(); //400
             }
 
-            TeamBuilder.Models.TeamBuilder? teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
+            var teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
             if (teamBuilderEvent == null)
             {
                 return NotFound(); //404
             }
+
+            _ = Util.Util.CopyProperties(teamBuilderEventDto, teamBuilderEvent);
 
             try
             {

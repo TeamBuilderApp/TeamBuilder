@@ -1,4 +1,6 @@
-﻿namespace TeamBuilder.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TeamBuilder.Models
 {
     /* 
         Added a Data Transfer Object (DTO)!     
@@ -19,8 +21,14 @@
      */
     public class TeamBuilderEventDto
     {
+        [Key]
         public long Id { get; set; }
+        
+        [Required]
+        [MaxLength(250)]
         public string EventName { get; set; } = "";
+
+        [MaxLength(2500)]
         public string EventDescription { get; set; } = "";
         public DateTime EventStart { get; set; }
 
