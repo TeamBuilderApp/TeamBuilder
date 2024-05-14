@@ -6,8 +6,10 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<TeamBuilderContext>(opt =>
-    opt.UseInMemoryDatabase("TeamBuilder"));
+//This section below is for connection string 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<TeamBuilderContext>(options => options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<TeamBuilderContext>(opt => opt.UseInMemoryDatabase("TeamBuilder"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
