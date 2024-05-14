@@ -27,7 +27,8 @@ namespace TeamBuilder.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TeamBuilder>(entity => {
+            modelBuilder.Entity<TeamBuilder>(entity =>
+            {
                 entity.HasKey(k => k.Id);
             });
             OnModelCreatingPartial(modelBuilder);

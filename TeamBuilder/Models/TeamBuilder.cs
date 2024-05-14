@@ -23,7 +23,7 @@ namespace TeamBuilder.Models
     {
         [Key]
         public long Id { get; set; }
-        
+
         [Required]
         [MaxLength(250)]
         public string EventName { get; set; } = "";
