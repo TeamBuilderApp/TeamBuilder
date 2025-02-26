@@ -16,7 +16,7 @@ namespace TeamBuilder.Models
         Feature 4) An external centralized Entity Framework Service that uses Bulk Operations async to read in all POSTS from any app connected to this API...
         Which can be the center of operations.
     */
-    public class TeamBuilderContext : DbContext
+    public partial class TeamBuilderContext : DbContext
     {
         public TeamBuilderContext(DbContextOptions<TeamBuilderContext> options)
             : base(options)
@@ -24,5 +24,15 @@ namespace TeamBuilder.Models
         }
 
         public DbSet<TeamBuilder> TeamBuilder { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TeamBuilder>(entity =>
+            {
+                entity.HasKey(k => k.Id);
+            });
+            OnModelCreatingPartial(modelBuilder);
+        }
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
