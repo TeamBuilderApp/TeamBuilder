@@ -1,6 +1,6 @@
 # TeamBuilder
 
-Welcome to our new repo!
+Welcome to our new repo! We are open source!
 
 Welcome to Team Builder! 
 
@@ -29,4 +29,11 @@ https://github.com/TeamBuilderApp/TeamBuilder
 Best Regards,
 
 Old repo: https://github.com/TeamBuilderAPI/TeamBuilder
+
+
+We are open source, and only use the simple standard MIT License. See LICENSE.md at this projects root. There's nothing else to it! I highly encourage anyone at all, who feels inspired, to participate as freely as they desire to!
+Refereces:
+[https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project](https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project)
+[https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/)
+
 
