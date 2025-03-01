@@ -32,7 +32,9 @@ Old repo: https://github.com/TeamBuilderAPI/TeamBuilder
 
 
 We are open source, and only use the simple standard MIT License. See LICENSE.md at this projects root. There's nothing else to it! I highly encourage anyone at all, who feels inspired, to participate as freely as they desire to!
-Refereces:
+
+Open Source Refereces:
+
 [https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project](https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project)
 [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/)
 
