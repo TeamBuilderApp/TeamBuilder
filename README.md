@@ -57,6 +57,7 @@ We are open source, and only use the simple standard MIT License. See LICENSE.md
 Best Regards,
 
 Christopher W. Peterson
+
 (TeamBuilder contact): teambuilderapp2@gmail.com
 
 
