@@ -51,9 +51,6 @@ Older Repo:
 https://github.com/TeamBuilderAPI/TeamBuilder
 
 
-We are open source, and only use the simple standard MIT License. See LICENSE.md, at this project's root. I highly encourage that anyone possible, who feels inspired, to participate as freely as they desire to! I hope that everyone that contributes to, or uses TeamBuilder, simply will discover as much of their own desired success, as possible! Feel free to ask anything that you feel inspired about, in the Discussions tab.
-
-
 Best Regards,
 
 Christopher W. Peterson
@@ -61,7 +58,9 @@ Christopher W. Peterson
 (TeamBuilder contact): teambuilderapp2@gmail.com
 
 
-Open Source References:
+**We are open source, and only use the simple standard MIT License. See LICENSE.md, at this project's root. I highly encourage that anyone possible, who feels inspired, to participate as freely as they desire to! I hope that everyone that contributes to, or uses TeamBuilder, simply will discover as much of their own desired success, as possible! Feel free to ask anything that you feel inspired about, in the Discussions tab.**
+
+**Open Source References:**
 
 [https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project](https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project)
 
