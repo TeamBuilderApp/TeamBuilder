@@ -58,7 +58,7 @@ Christopher W. Peterson
 (TeamBuilder contact): teambuilderapp2@gmail.com
 
 
-**We are open source, and only use the simple standard MIT License. See LICENSE.md, at this project's root. I highly encourage that anyone possible, who feels inspired, to participate as freely as they desire to! I hope that everyone that contributes to, or uses TeamBuilder, simply will discover as much of their own desired success, as possible! Feel free to ask anything that you feel inspired about, in the Discussions tab. You may also contact the TeamBuilder email below. Game on!**
+**We are open source, and only use the simple standard MIT License. See LICENSE.md, at this project's root. I highly encourage that anyone possible, who feels inspired, to participate as freely as they desire to! I hope that everyone that contributes to, or uses TeamBuilder, simply will discover as much of their own desired success, as possible! Feel free to ask anything that you feel inspired about, in the Discussions tab. You may also contact the TeamBuilder email above. Game on!**
 
 **Open Source References:**
 
