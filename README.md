@@ -10,7 +10,14 @@ The idea of needing or building a team, became a desire of mine, shortly after c
 
 I also desired a way to have a full team for an extended or routine amount of time. I desired to fill in empty positions without missing the new game release, push for a world-first achievement, or sporting events, where a full team was needed for a satisfying accurate game. Quick and reliable plug and play for empty spots was key when trying to have a full game experience.
 
-This Team Builder app applies to more than just Sports and games, it could essentially be anything, examples such as a DND or a Magic Card tournament, the list goes on with imagination as key to the heart of its design!
+What Does This Product Deliver?
+This team building product will deliver, upon solving for the team itself, hosting or playing, defined. Maximum efficiency, means that your team has the highest chance to refill automatically, for the smoothest turnover replacement, substitute, and that players will have the highest chance to find a team. Upon solving for this tool, both host and player, are garanteed the highest chance that you will have the maximum playtime, with the least amount of downtime! This means that the least amount of time managing, or fumbling distraction, and the MAXIMUM amount of time playing, or attending any hosted event! 
+
+Efficiency continued:
+TeamBuilder is not doing anything out of the ordinary, it's just automating everything possible for maximum play time, at the least amount of downtime. For maximum or more frequently desired playtime, even availability as a list of choices. Together, we will put the Capital 'T' in Team, once TeamBuilder's design is solved for! Upon this team building tool design delivering the most efficiency, and feels like an integral tool, then TeamBuilder too will now have the Capital T in it's Team building ability. Efficiency delivered, at the most simple use. 
+
+
+TeamBuilder applies to more than just sports and games, it solves for the mechanics of building any and all team(s) by definition! TeamBuilder will work for anything and everything possible, where a team is needed! Examples of use include, sports, church groups, anything that apps like meetup.com (or similar) host, events, school events, games, after-school pick-up-games, sports, sports practice training, fishing, announced games, world-first groups, professional, casual to parse-perfection ranking, any roster, for any event, imagine the potential! Unlock your imagination, host it, or search for any team, the design is the key to almost any success! Solving for the mechanics of what it takes to build, host, and join a team, keep a team going, solves for the Capital 'T' in Team, aka solves for the mechanics of the team itself.
 
 Overall Goals:
 This idea does not claim to need anything other than 'free contribution' until the Patent/Trademark etc. can be legally funded. Considering this the free market for now, and encourage all to participate.
