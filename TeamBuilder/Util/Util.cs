@@ -10,6 +10,55 @@ namespace TeamBuilder.Util
             //This is the common util file for Team Builder!
         }
 
+        public static void readFiles()
+        {
+            string directoryName = @"C:\Users\teamb_runxjhg\source\repos\python\RosterParser\RosterParser\Rosters";
+
+            foreach (string fileName in Directory.GetFiles(directoryName))
+            {
+                readFile(fileName);
+                // Do something with the file content
+            }
+        }
+        /// <summary>
+        /// Uploads each roster, to a unique guid for userid and teamid, per file.
+        /// I suppose that the only unique thing is time slot, as you could not host multiple events at once, therefore they must be the same? Todo.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static void readFile(string fileName)
+        {
+
+            fileName = fileName.Trim();
+            if (String.IsNullOrEmpty(fileName))
+            {
+                return;
+            }
+            //Todo, it looks correct, why does the Directory return false then?
+            /*else if (Directory.Exists(fileName) == false)
+            {
+                Console.WriteLine("Error, invalid file or directory. Rosters should go to the Rosters folder at this project level.");
+            }*/
+            else
+            {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                string directory = Path.GetDirectoryName(fileName);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                using (StreamReader sr = File.OpenText(fileName))
+                {
+                    string s = String.Empty;
+                    Console.WriteLine("Reading in roster file name: " + fileName);
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                    while ((s = sr.ReadLine())
+                        != null)
+                    {
+                        //do minimal amount of work here
+                        Console.WriteLine(s);
+                    }
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                }
+            }
+        }
+
         /// <summary>
         /// Extension for 'Object' that copies the properties to a destination object.
         /// </summary>
