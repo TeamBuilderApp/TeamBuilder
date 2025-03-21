@@ -2,7 +2,7 @@
 
 Welcome to Team Builder!
 
-This is our new repo, we are currently open source!
+Welcome to our new repo! We are currently open source.
 
 Need a Team? The idea is to build a Team for anything and everything! Video games, sports, etc. The most quick and simple roster mechanics, for the maximum play. Now that's efficiency! Also designed in a way where all other team building apps can all work together using a common roster language! This includes anywhere at all where a team roster is hosted, any app, any website, and any upload. The final tool would solve for the mechanics of the team itself, using a common roster parser. Basically, any and all roster(s) have the same common pieces, and that never changes no matter what! Simply upload or link any roster via TeamBuilders Web API call. You only call a URL, upload roster, or text, or automatically POST to TeamBuilder API, and that's it! You're now hosting a roster in a common central roster share. You are either the Host or the Player. Host(s) see player(s), and player(s) see Host(s).
 
