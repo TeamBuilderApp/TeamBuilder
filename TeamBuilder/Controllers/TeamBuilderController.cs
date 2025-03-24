@@ -116,8 +116,13 @@ namespace TeamBuilder.Controllers
 
             try
             {
-                _ = _context.TeamBuilder.Add(teamBuilderEvent);
-                _ = await _context.SaveChangesAsync();
+                //Todo test delete me:
+                Util.Util.readFiles();
+
+
+                //Todo re-enable Azure sub. Save to DB.
+                //_ = _context.TeamBuilder.Add(teamBuilderEvent);
+                //_ = await _context.SaveChangesAsync();
             }
             catch (Exception)
             {

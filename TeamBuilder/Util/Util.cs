@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.IO;
 using System.Reflection;
 
 namespace TeamBuilder.Util
@@ -10,9 +11,13 @@ namespace TeamBuilder.Util
             //This is the common util file for Team Builder!
         }
 
+
+        //Todo read to a database.
+        //Todo create algorithm to parse rosters of different shapes.
         public static void readFiles()
         {
-            string directoryName = @"C:\Users\teamb_runxjhg\source\repos\python\RosterParser\RosterParser\Rosters";
+            //Todo add config var for each path.
+            string directoryName = @"C:\TeamBuilder\Rosters";
 
             foreach (string fileName in Directory.GetFiles(directoryName))
             {
@@ -25,13 +30,13 @@ namespace TeamBuilder.Util
         /// I suppose that the only unique thing is time slot, as you could not host multiple events at once, therefore they must be the same? Todo.
         /// </summary>
         /// <param name="fileName"></param>
-        public static void readFile(string fileName)
+        public static bool readFile(string fileName)
         {
-
+            bool success = false;
             fileName = fileName.Trim();
             if (String.IsNullOrEmpty(fileName))
             {
-                return;
+                return success;
             }
             //Todo, it looks correct, why does the Directory return false then?
             /*else if (Directory.Exists(fileName) == false)
@@ -56,7 +61,42 @@ namespace TeamBuilder.Util
                     }
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 }
+                SaveParsedRoster(fileName);
             }
+            success = true;
+            return success;
+        }
+        public static void SaveParsedRoster(string fromDir)
+        {
+            string sourcedirectory = fromDir;//@"C:\source";
+            string sourcedirectoryPath = Path.GetDirectoryName(fromDir);
+            string destinationdirectoryPath = @"C:\TeamBuilder\Rosters_Parsed\Success";
+            string backupdirectory = @"C:\TeamBuilder\Backup";
+            try
+            {
+                if (Directory.Exists(sourcedirectoryPath) == true && File.Exists(fromDir) == true)
+                {
+                    if (Directory.Exists(destinationdirectoryPath))
+                    {
+                        //Directory.Delete(destinationdirectory);
+                        Directory.Move(sourcedirectoryPath, backupdirectory + DateTime.Now.ToString("_MMMdd_yyyy_HHmmss"));
+                        
+                        //Todo, simply copy the roster file also.
+                        //Directory.Move(sourcedirectory, destinationdirectoryPath);
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(destinationdirectoryPath);
+                        Directory.Move(sourcedirectory, destinationdirectoryPath);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         /// <summary>
