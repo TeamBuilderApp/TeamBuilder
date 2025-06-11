@@ -77,10 +77,7 @@ namespace TeamBuilder.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTeamBuilderEvent(long id, TeamBuilderEventDto teamBuilderEventDto)
         {
-            if (id != teamBuilderEventDto.Id)
-            {
-                return BadRequest(); //400
-            }
+            teamBuilderEventDto.Id = id;
 
             var teamBuilderEvent = await _context.TeamBuilder.FindAsync(id);
             if (teamBuilderEvent == null)
