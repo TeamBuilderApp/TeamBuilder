@@ -1,8 +1,8 @@
 ﻿namespace TeamBuilder.Models
 {
-    public static class FieldModel
+    public static class ConfigModel
     {
-        static FieldModel()
+        static ConfigModel()
         {
             //Todo add and read in any global config key values here.
             ConfigKey1 = "global config value";

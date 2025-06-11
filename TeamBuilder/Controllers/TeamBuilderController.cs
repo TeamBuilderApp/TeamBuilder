@@ -68,7 +68,7 @@ namespace TeamBuilder.Controllers
         // </snippet_Get>
 
         // <snippet_Update>
-        //SETTER
+        //UPDATE
         //The PUT method is used to update a single resource by its ID.
         // Exact match. Updates a Team Builder Event via lookup by its ID.
         // PUT: TeamBuilder/id
