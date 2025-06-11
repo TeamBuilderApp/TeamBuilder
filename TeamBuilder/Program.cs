@@ -33,6 +33,10 @@ if (app.Environment.IsDevelopment())
     _ = app.UseSwaggerUI();
 }
 
+//Enable a JavaScript front-end.
+//app.UseDefaultFiles();
+//app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
