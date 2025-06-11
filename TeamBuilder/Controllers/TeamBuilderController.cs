@@ -123,6 +123,7 @@ namespace TeamBuilder.Controllers
                 //Todo re-enable Azure sub. Save to DB.
                 _ = _context.TeamBuilder.Add(teamBuilderEvent);
                 _ = await _context.SaveChangesAsync();
+                teamBuilderEventDto.Id = teamBuilderEvent.Id;
             }
             catch (Exception)
             {
