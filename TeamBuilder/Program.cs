@@ -8,6 +8,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 //This section below is for connection string 
 var connection = String.Empty;
+System.IO.Directory.CreateDirectory(@"C:\TeamBuilder\Rosters");
 if (builder.Environment.IsDevelopment())
 {
     builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.Development.json");
